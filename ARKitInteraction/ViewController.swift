@@ -21,13 +21,15 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
 
+    @IBOutlet weak var shutterView: UIView!
+    @IBOutlet weak var snapShotButton: UIButton!
     // MARK: - UI Elements
     
     var focusSquare = FocusSquare()
     
     /// The view controller that displays the status and "restart experience" UI.
     lazy var statusViewController: StatusViewController = {
-        return childViewControllers.lazy.compactMap({ $0 as? StatusViewController }).first!
+        return children.lazy.compactMap({ $0 as? StatusViewController }).first!
     }()
     
     /// The view controller that displays the virtual object selection menu.
@@ -57,11 +59,28 @@ class ViewController: UIViewController {
         return sceneView.session
     }
     
+    @IBAction func didTakeSnapshot(_ sender: UIButton) {
+        shutterView.alpha = 1.0
+        shutterView.isHidden = false
+        
+        if let soundURL = Bundle.main.url(forResource: "shutter", withExtension: "mp3") {
+            var mySound : SystemSoundID = 0
+            AudioServicesCreateSystemSoundID(soundURL as CFURL, &mySound)
+            AudioServicesPlayAlertSound(mySound)
+        }
+        
+        UIView.animate(withDuration: 1.0, animations: {
+            self.shutterView.alpha = 0.0
+        }) { (finished) in
+            self.shutterView.isHidden = true
+            UIImageWriteToSavedPhotosAlbum(self.sceneView.snapshot(), nil, nil, nil)
+        }
+    }
+    
     // MARK: - View Controller Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         sceneView.delegate = self
         sceneView.session.delegate = self
 
