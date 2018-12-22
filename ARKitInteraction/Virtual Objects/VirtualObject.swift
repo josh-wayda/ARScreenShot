@@ -199,7 +199,7 @@ class VirtualObject: SCNReferenceNode {
         if distanceToPlane > epsilon && distanceToPlane < verticalAllowance {
             SCNTransaction.begin()
             SCNTransaction.animationDuration = CFTimeInterval(distanceToPlane * 500) // Move 2 mm per second.
-            SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            SCNTransaction.animationTimingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
             position.y = anchor.transform.columns.3.y
             updateAlignment(to: anchor.alignment, transform: simdWorldTransform, allowAnimation: false)
             SCNTransaction.commit()
