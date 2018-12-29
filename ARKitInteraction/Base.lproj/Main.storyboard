@@ -145,6 +145,10 @@
                             <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="3cb-dQ-oXx">
                                 <rect key="frame" x="166.5" y="707.5" width="691" height="43"/>
                             </activityIndicatorView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ex-YN-92I">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yEM-d2-7ml">
                                 <rect key="frame" x="726" y="704" width="50" height="50"/>
                                 <constraints>
@@ -152,16 +156,22 @@
                                     <constraint firstAttribute="height" constant="50" id="x4B-1R-fJg"/>
                                 </constraints>
                                 <state key="normal" image="camera_button"/>
+                                <connections>
+                                    <action selector="didTakeSnapshot:" destination="BV1-FR-VrT" eventType="touchUpInside" id="ni8-0e-gCG"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="3cb-dQ-oXx" firstAttribute="centerX" secondItem="tnx-rc-95S" secondAttribute="centerX" id="2CK-J3-Ghl"/>
+                            <constraint firstItem="9Ex-YN-92I" firstAttribute="top" secondItem="RLh-bf-1c3" secondAttribute="top" id="3Ij-xm-qql"/>
+                            <constraint firstItem="9Ex-YN-92I" firstAttribute="leading" secondItem="GBj-4O-Whc" secondAttribute="leading" id="8sO-KR-hDG"/>
                             <constraint firstItem="xcf-ic-uGo" firstAttribute="leading" secondItem="GBj-4O-Whc" secondAttribute="leading" constant="164" id="CgQ-8S-gp0"/>
                             <constraint firstItem="3cb-dQ-oXx" firstAttribute="width" secondItem="xcf-ic-uGo" secondAttribute="width" constant="-5" id="Fg7-D6-Eh5"/>
                             <constraint firstAttribute="trailing" secondItem="R5W-V8-6lY" secondAttribute="trailing" id="J42-1v-Ihf"/>
                             <constraint firstItem="3cb-dQ-oXx" firstAttribute="centerX" secondItem="xcf-ic-uGo" secondAttribute="centerX" id="KPf-Pf-2mp"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="trailing" secondItem="yEM-d2-7ml" secondAttribute="trailing" multiplier="1.3" constant="15" id="KuC-IF-U4u"/>
+                            <constraint firstItem="9Ex-YN-92I" firstAttribute="trailing" secondItem="GBj-4O-Whc" secondAttribute="trailing" id="Qrd-hO-sGd"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="bottom" secondItem="yEM-d2-7ml" secondAttribute="bottom" constant="14" id="R1f-A7-5Li"/>
                             <constraint firstItem="tnx-rc-95S" firstAttribute="top" secondItem="GBj-4O-Whc" secondAttribute="top" id="Sdx-fT-fqG"/>
                             <constraint firstItem="R5W-V8-6lY" firstAttribute="leading" secondItem="RLh-bf-1c3" secondAttribute="leading" id="Yj0-Fo-B5n"/>
@@ -172,6 +182,7 @@
                             <constraint firstItem="R5W-V8-6lY" firstAttribute="top" secondItem="RLh-bf-1c3" secondAttribute="top" id="fDn-zw-Oo2"/>
                             <constraint firstAttribute="bottom" secondItem="E6c-py-dvH" secondAttribute="bottom" id="kLb-BI-xJ4"/>
                             <constraint firstAttribute="bottom" secondItem="R5W-V8-6lY" secondAttribute="bottom" id="poH-DX-LIv"/>
+                            <constraint firstItem="9Ex-YN-92I" firstAttribute="bottom" secondItem="GBj-4O-Whc" secondAttribute="bottom" id="siR-9P-cXR"/>
                             <constraint firstItem="3cb-dQ-oXx" firstAttribute="height" secondItem="xcf-ic-uGo" secondAttribute="height" constant="-5" id="szW-aA-CXv"/>
                             <constraint firstItem="GBj-4O-Whc" firstAttribute="bottom" secondItem="xcf-ic-uGo" secondAttribute="bottom" constant="15" id="w7D-gO-FfL"/>
                             <constraint firstItem="E6c-py-dvH" firstAttribute="leading" secondItem="GBj-4O-Whc" secondAttribute="leading" id="wEL-Op-yTe"/>
@@ -183,6 +194,8 @@
                         <outlet property="addObjectButton" destination="xcf-ic-uGo" id="uFa-W2-4Iu"/>
                         <outlet property="blurView" destination="R5W-V8-6lY" id="oF2-lD-Srf"/>
                         <outlet property="sceneView" destination="E6c-py-dvH" id="Gr4-Uw-Z4A"/>
+                        <outlet property="shutterView" destination="9Ex-YN-92I" id="zkZ-F8-P3g"/>
+                        <outlet property="snapShotButton" destination="yEM-d2-7ml" id="k73-1e-RrI"/>
                         <outlet property="spinner" destination="3cb-dQ-oXx" id="rnE-Xe-cDE"/>
                         <segue destination="mYv-Qg-jWH" kind="popoverPresentation" identifier="showObjects" popoverAnchorView="xcf-ic-uGo" id="WP3-Hd-cnB">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -191,7 +204,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="56.799999999999997" y="98.50074962518741"/>
+            <point key="canvasLocation" x="56.249999999999993" y="98.4375"/>
         </scene>
         <!--Virtual Object Selection View Controller-->
         <scene sceneID="8F1-Zd-946">
